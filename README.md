@@ -8,7 +8,8 @@ This service redirects all traffic from `blog.corsego.com` to `blog.superails.co
 
 2. Push these files to your repository:
 
-   - `index.html`
+   - `index.html` (handles root path)
+   - `404.html` (handles all other paths)
 
 3. Go to your repository settings:
 
@@ -26,10 +27,17 @@ This service redirects all traffic from `blog.corsego.com` to `blog.superails.co
 
 ## How it works
 
-The `index.html` file contains a simple JavaScript redirect that:
+The solution uses two files:
 
-- Captures the current URL path and query parameters
-- Redirects to the corresponding URL on blog.superails.com
+- `index.html`: Handles the root path (`/`) and includes a meta refresh as a fallback
+- `404.html`: Handles all other paths by capturing the current URL and redirecting to the corresponding path on blog.superails.com
+
+This setup ensures that all paths are properly redirected, including:
+
+- Root path: `blog.corsego.com` → `blog.superails.com`
+- Subpaths: `blog.corsego.com/about` → `blog.superails.com/about`
+- Deep paths: `blog.corsego.com/posts/123` → `blog.superails.com/posts/123`
+- Query parameters: `blog.corsego.com?query=test` → `blog.superails.com?query=test`
 
 ## Example
 
